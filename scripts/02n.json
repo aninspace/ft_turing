@@ -1,0 +1,39 @@
+{
+  "name": "02n",
+  "alphabet": [
+    "0",
+    ".",
+    "n",
+    "y"
+  ],
+  "blank": ".",
+  "states": [
+    "replace_first_zero",
+    "find_last_zero",
+    "replace_last_zero",
+    "find_first_zero",
+    "HALT"
+  ],
+  "initial": "replace_first_zero",
+  "finals": [
+    "HALT"
+  ],
+  "transitions": {
+    "replace_first_zero": [
+      { "read": "0", "to_state": "find_last_zero", "write": ".", "action": "RIGHT" },
+      { "read": ".", "to_state": "HALT", "write": "y", "action": "RIGHT" }
+    ],
+    "find_last_zero": [
+      { "read": "0", "to_state": "find_last_zero", "write": "0", "action": "RIGHT" },
+      { "read": ".", "to_state": "replace_last_zero", "write": ".", "action": "LEFT" }
+    ],
+    "replace_last_zero": [
+      { "read": "0", "to_state": "find_first_zero", "write": ".", "action": "LEFT" },
+      { "read": ".", "to_state": "HALT", "write": "n", "action": "RIGHT" }
+    ],
+    "find_first_zero": [
+      { "read": "0", "to_state": "find_first_zero", "write": "0", "action": "LEFT" },
+      { "read": ".", "to_state": "replace_first_zero", "write": ".", "action": "RIGHT" }
+    ]
+  }
+}
